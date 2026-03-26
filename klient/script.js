@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const notesContainer = document.getElementById('notesContainer');
     const form = document.getElementById('noteForm');
+    const todosContainer = document.getElementById('todosContainer');
+    const todoForm = document.getElementById('todoForm');
+    const fetchNotesBtn = document.getElementById('fetchNotesBtn');
+    const fetchTodosBtn = document.getElementById('fetchTodosBtn');
 
-    // Funksjon for å hente og vise notater
     function hentOgVisNotater() {
         fetch('http://localhost:3000/notes')
             .then(res => res.json())
             .then(data => {
-                // Tøm containeren før vi legger til nye notater
                 notesContainer.innerHTML = '';
-
-                // Loop gjennom data og legg til i DOM
                 data.forEach(note => {
                     const div = document.createElement('div');
                     div.className = 'note';
@@ -23,17 +23,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Ikke kall hentOgVisNotater() når siden lastes
-    // bare lag knappen for å hente notater
-    const fetchBtn = document.createElement('button');
-    fetchBtn.textContent = 'Hent notater';
-    document.body.insertBefore(fetchBtn, notesContainer);
+    function hentOgVisTodos() {
+        fetch('http://localhost:3000/todos')
+            .then(res => res.json())
+            .then(data => {
+                todosContainer.innerHTML = '';
+                data.forEach(todo => {
+                    const div = document.createElement('div');
+                    div.className = 'note';
+                    div.innerHTML = `<h3>${todo.title}</h3><p>${todo.content || ''}</p>`;
+                    todosContainer.appendChild(div);
+                });
+            })
+            .catch(error => {
+                console.error('Feil ved henting av todos:', error);
+            });
+    }
 
-    fetchBtn.addEventListener('click', () => {
-        hentOgVisNotater();
-    });
+    fetchNotesBtn.addEventListener('click', hentOgVisNotater);
+    fetchTodosBtn.addEventListener('click', hentOgVisTodos);
 
-    // Når du sender inn skjemaet for å legge til et nytt notat
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const title = document.getElementById('title').value;
@@ -51,10 +60,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    todoForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = document.getElementById('todoTitle').value;
+        const content = document.getElementById('todoContent').value;
+
+        fetch('http://localhost:3000/todos', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title, content })
+        })
+        .then(res => res.json())
+        .then(newTodo => {
+            addTodoToDOM(newTodo);
+            todoForm.reset();
+        });
+    });
+
     function addNoteToDOM(note) {
         const div = document.createElement('div');
         div.className = 'note';
         div.innerHTML = `<h3>${note.title}</h3><p>${note.content}</p>`;
         notesContainer.appendChild(div);
+    }
+
+    function addTodoToDOM(todo) {
+        const div = document.createElement('div');
+        div.className = 'note';
+        div.innerHTML = `<h3>${todo.title}</h3><p>${todo.content || ''}</p>`;
+        todosContainer.appendChild(div);
     }
 });

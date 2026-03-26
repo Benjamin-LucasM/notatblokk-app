@@ -1,9 +1,12 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-input, textarea {
+input {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -20,4 +23,35 @@ button {
     padding: 10px;
     margin-top: 10px;
     border-radius: 4px;
+}
+
+.main {
+    display: flex;
+    justify-content: space-around;
+    gap: 5rem;
+}
+
+.notater {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.knapper {
+    display: flex;
+    gap: 2rem;
+}
+
+#todosContainer {
+    width: 100%;
+}
+
+#notesContainer {
+    width: 100%;
 }

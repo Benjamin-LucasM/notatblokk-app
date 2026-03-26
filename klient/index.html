@@ -1,20 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="no">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Notatapp</title>
     <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  </head>
+  <body>
     <h1>Min Notatapp</h1>
-    <form id="noteForm">
-        <input type="text" id="title" placeholder="Tittel" required />
-        <textarea id="content" placeholder="Skriv inn notatet..." required></textarea>
-        <button type="submit">Legg til notat</button>
-    </form>
-    <hr />
-    <div id="notesContainer"></div>
-
+    <div class="main">
+        <div class="notater">
+            <h2>Notater</h2>
+            <form id="noteForm">
+            <input type="text" id="title" placeholder="Tittel" required />
+            <input
+                id="content"
+                placeholder="Skriv inn notatet..."
+                required
+            ></input>
+            </form>
+            <div class="knapper">
+                <button type="submit">Legg til notat</button>
+                <button id="fetchNotesBtn">Hent notater</button>
+            </div>
+            <hr />
+            <div id="notesContainer"></div>
+        </div>
+        <div class="todos">
+            <h2>Todo Liste</h2>
+            <form id="todoForm">
+            <input type="text" id="todoTitle" placeholder="Tittel" required />
+            <input
+                id="todoContent"
+                placeholder="Beskrivelse (valgfritt)"
+            ></input>
+            </form>
+            <div class="knapper">
+                <button type="submit">Legg til todo</button>
+                <button id="fetchTodosBtn">Hent todos</button>
+            </div>
+            <hr />
+            <div id="todosContainer"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
