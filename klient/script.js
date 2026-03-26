@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchTodosBtn = document.getElementById('fetchTodosBtn');
 
     function hentOgVisNotater() {
-        fetch('http://localhost:3000/notes')
+        fetch('http://192.168.20.83:3000/notes')
             .then(res => res.json())
             .then(data => {
                 notesContainer.innerHTML = '';
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function hentOgVisTodos() {
-        fetch('http://localhost:3000/todos')
+        fetch('http://192.168.20.83:3000/todos')
             .then(res => res.json())
             .then(data => {
                 todosContainer.innerHTML = '';
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = document.getElementById('title').value;
         const content = document.getElementById('content').value;
 
-        fetch('http://localhost:3000/notes', {
+        fetch('http://192.168.20.83:3000/notes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, content })
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = document.getElementById('todoTitle').value;
         const content = document.getElementById('todoContent').value;
 
-        fetch('http://localhost:3000/todos', {
+        fetch('http://192.168.20.83:3000/todos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, content })
