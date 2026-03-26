@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const sqlite3 = require("sqlite3").verbose();
+const path = require('path');
 
 const db = new sqlite3.Database("./database.db");
 
@@ -26,6 +27,12 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, 'klient')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'klient', 'index.html'));
+});
 
 // Henter alle notater fra databasen
 app.get("/notes", (req, res) => {
@@ -86,6 +93,8 @@ app.post("/todos", (req, res) => {
     },
   );
 });
+
+const PORT = process.env.PORT || 3000;
 
 // viser hvilken port serveren kjører på
 app.listen(PORT, () => {
