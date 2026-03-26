@@ -1,7 +1,10 @@
-**start-up**
+**set-up**
 
-1. (terminal) cd server
-2. (terminal) node server.js
+1. git clone https://github.com/Benjamin-LucasM/notatblokk-app.git
+2. cd notatblokk-app/server/
+3. npm install
+4. npm rebuild
+5. node server.js
 
 **GitHub Terminal**
 
