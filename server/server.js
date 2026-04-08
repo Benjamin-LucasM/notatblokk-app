@@ -46,6 +46,7 @@ app.get("/notes", (req, res) => {
 // Legger til et nytt notat i databasen
 app.post("/notes", (req, res) => {
   const { title, content } = req.body;
+  console.log([title, content]);
   db.run(
     "INSERT INTO notes (title, content) VALUES (?, ?)",
     [title, content],
