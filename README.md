@@ -6,8 +6,9 @@ ssh server@192.168.20.83
 2. git clone https://github.com/Benjamin-LucasM/notatblokk-app.git
 3. cd notatblokk-app/server/
 4. npm install
-5. npm rebuild
-6. node server.js
+5. npm audit fix
+6. npm rebuild
+7. node server.js
 
 **GitHub Terminal**
 
