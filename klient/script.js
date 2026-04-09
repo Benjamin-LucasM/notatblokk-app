@@ -31,7 +31,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 data.forEach(todo => {
                     const div = document.createElement('div');
                     div.className = 'note';
-                    div.innerHTML = `<h3>${todo.title}</h3> <div class="checkbox"> <input type="checkbox"></input> <p>${todo.content || ''}</p> </div>`;
+
+                    // Lag checkbox-elementet
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+
+                    // Legg til event listener for checkbox
+                    checkbox.addEventListener('change', () => {
+                        if (checkbox.checked) {
+                            // Hvis ønskelig, gjør noe når den er sjekket
+                            div.classList.add('completed'); // for eksempel
+                        } else {
+                            // Når den avkrysset
+                            div.classList.remove('completed');
+                        }
+                    });
+
+                    // Opprett innholdet med tittel og beskrivelse
+                    div.innerHTML = `<h3>${todo.title}</h3> <div class="checkbox"></div>`;
+                    // Sett inn checkbox i denne div-en
+                    const checkboxContainer = div.querySelector('.checkbox');
+                    checkboxContainer.appendChild(checkbox);
+
+                    // Legg til teksten for beskrivelse
+                    const p = document.createElement('p');
+                    p.textContent = todo.content || '';
+                    div.appendChild(p);
+
                     todosContainer.appendChild(div);
                 });
             })
