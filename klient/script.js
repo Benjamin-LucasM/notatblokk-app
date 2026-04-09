@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchTodosBtn = document.getElementById('fetchTodosBtn');
 
     function hentOgVisNotater() {
-        fetch('http://192.168.20.83:3000/notes')
+        fetch('http://192.168.20.83:6767/notes')
             .then(res => res.json())
             .then(data => {
                 notesContainer.innerHTML = '';
@@ -24,40 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function hentOgVisTodos() {
-        fetch('http://192.168.20.83:3000/todos')
+        fetch('http://192.168.20.83:6767/todos')
             .then(res => res.json())
             .then(data => {
                 todosContainer.innerHTML = '';
                 data.forEach(todo => {
                     const div = document.createElement('div');
                     div.className = 'note';
-
-                    // Lag checkbox-elementet
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-
-                    // Legg til event listener for checkbox
-                    checkbox.addEventListener('change', () => {
-                        if (checkbox.checked) {
-                            // Hvis ønskelig, gjør noe når den er sjekket
-                            div.classList.add('completed'); // for eksempel
-                        } else {
-                            // Når den avkrysset
-                            div.classList.remove('completed');
-                        }
-                    });
-
-                    // Opprett innholdet med tittel og beskrivelse
-                    div.innerHTML = `<h3>${todo.title}</h3> <div class="checkbox"></div>`;
-                    // Sett inn checkbox i denne div-en
-                    const checkboxContainer = div.querySelector('.checkbox');
-                    checkboxContainer.appendChild(checkbox);
-
-                    // Legg til teksten for beskrivelse
-                    const p = document.createElement('p');
-                    p.textContent = todo.content || '';
-                    div.appendChild(p);
-
+                    div.innerHTML = `<h3>${todo.title}</h3> <div class="checkbox"> <input type="checkbox"></input> <p>${todo.content || ''}</p> </div>`;
                     todosContainer.appendChild(div);
                 });
             })
@@ -75,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const content = document.getElementById('content').value;
 
         console.log("Sending post");
-        fetch('http://192.168.20.83:3000/notes', {
+        fetch('http://192.168.20.83:6767/notes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, content })
@@ -93,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = document.getElementById('todoTitle').value;
         const content = document.getElementById('todoContent').value;
 
-        fetch('http://192.168.20.83:3000/todos', {
+        fetch('http://192.168.20.83:6767/todos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, content })

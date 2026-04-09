@@ -4,6 +4,12 @@ const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 
 const db = new sqlite3.Database("./database.db");
+const addDescriptionBtn = document.getElementById('addDescriptionBtn');
+const descriptionInput = document.getElementById('todoContent');
+const descriptionList = document.getElementById('descriptionList');
+const todoTitleInput = document.getElementById('todoTitle');
+
+let descriptions = [];
 
 // Opprette tabellen for notater
 db.run(`
@@ -44,24 +50,51 @@ app.get("/notes", (req, res) => {
 });
 
 // Legger til et nytt notat i databasen
-app.post("/notes", (req, res) => {
-  const { title, content } = req.body;
-  console.log([title, content]);
-  db.run(
-    "INSERT INTO notes (title, content) VALUES (?, ?)",
-    [title, content],
-    function (err) {
-      if (err) {
-        return res.status(500).json(err);
-      }
-      // Returnerer det nye notatet med ID
-      res.json({
-        id: this.lastID,
-        title,
-        content,
-      });
-    },
-  );
+addDescriptionBtn.addEventListener('click', () => {
+  const descText = descriptionInput.value.trim();
+  if (descText === '') return;
+
+  // Opprett en ny linje med checkbox og beskrivelse
+  const div = document.createElement('div');
+  div.className = 'description-item';
+
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+
+  const span = document.createElement('span');
+  span.textContent = descText;
+
+  div.appendChild(checkbox);
+  div.appendChild(span);
+  descriptionList.appendChild(div);
+
+  // Legg til i listen av beskrivelser
+  descriptions.push({ text: descText, completed: false, element: div, checkbox: checkbox });
+
+  // Nullstill input-feltet
+  descriptionInput.value = '';
+});
+
+document.querySelector('#todoForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const title = todoTitleInput.value.trim();
+  if (!title) return;
+
+  // Lagre todo med tittel og beskrivelse-liste
+  const todo = {
+    title: title,
+    descriptions: descriptions.map(d => ({ text: d.text, completed: d.checkbox.checked }))
+  };
+
+  // Send til server eller lagre lokalt
+  console.log('Lagre todo:', todo);
+
+  // Nullstill form
+  todoTitleInput.value = '';
+  descriptionInput.value = '';
+  descriptionList.innerHTML = '';
+  descriptions = [];
 });
 
 // Henter alle todos fra databasen
@@ -94,7 +127,7 @@ app.post("/todos", (req, res) => {
   );
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 6767;
 
 // viser hvilken port serveren kjører på
 app.listen(PORT, "0.0.0.0", () => {
