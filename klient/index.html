@@ -10,34 +10,23 @@
     <div class="main">
         <div class="notater">
             <h2>Notater</h2>
-            <form id="noteForm">
+            <form id="noteForm" class="box">
                 <input type="text" id="title" placeholder="Tittel" required />
-                <input
-                    id="content"
-                    placeholder="Skriv inn notatet..."
-                    required
-                ></input>
+                <input id="content" placeholder="Skriv inn notatet..." required></input>
                 <button type="submit">Legg til notat</button>
             </form>
-            <div class="knapper">
-                <button id="fetchNotesBtn">Hent notater</button>
-            </div>
+            <button id="fetchNotesBtn">Hent notater</button>
             <hr />
             <div id="notesContainer"></div>
         </div>
         <div class="todos">
             <h2>Todo Liste</h2>
-            <form id="todoForm">
+            <form id="todoForm" class="box">
                 <input type="text" id="todoTitle" placeholder="Tittel" required />
-                <input
-                    id="todoContent"
-                    placeholder="Beskrivelse (valgfritt)"
-                ></input>
+                <input id="todoContent" placeholder="Beskrivelse (valgfritt)" ></input>
                 <button type="submit">Legg til todo</button>
             </form>
-            <div class="knapper">
-                <button id="fetchTodosBtn">Hent todos</button>
-            </div>
+            <button id="fetchTodosBtn">Hent todos</button>
             <hr />
             <div id="todosContainer"></div>
         </div>
