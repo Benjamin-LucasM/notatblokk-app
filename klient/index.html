@@ -23,13 +23,12 @@
             <h2>Todo Liste</h2>
             <form id="todoForm" class="box">
                 <input type="text" id="todoTitle" placeholder="Tittel" required />
-                <br>
-                <input type="text" id="todoContent" placeholder="Beskrivelse" />
-                <button type="button" id="addDescriptionBtn">Legg til beskrivelse</button>
-                <div id="descriptionList"></div>
-                <br>
-                <button type="submit">Lagre todo</button>
+                <input id="todoContent" placeholder="Beskrivelse (valgfritt)" ></input>
+                <button type="submit">Legg til todo</button>
             </form>
+            <button id="fetchTodosBtn">Hent todos</button>
+            <hr />
+            <div id="todosContainer"></div>
         </div>
     </div>
     <script src="script.js"></script>
