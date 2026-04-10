@@ -10,7 +10,7 @@ ssh server@192.168.20.83
 6. npm rebuild
 7. node server.js
 
-server available på chrome: 192.168.20.83:3000
+server available på chrome: 192.168.20.83:6767
 
 **GitHub Terminal**
 

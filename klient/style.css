@@ -1,66 +1,96 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+* {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-button {
-    padding: 10px 20px;
-    cursor: pointer;
+body {
+    padding: 40px;
+    background: #fff;
+    color: #000;
 }
 
-.note {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 4px;
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
 }
 
 .main {
     display: flex;
-    justify-content: space-around;
-    gap: 5rem;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.notater {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+.notater, .todos {
+    width: 400px;
 }
 
-.todos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-}
-
-#todosContainer {
-    width: 100%;
-}
-
-#notesContainer {
-    width: 100%;
+h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
 }
 
 .box {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #000;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px;
+    border: 1px solid #000;
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.1s ease;
+}
+
+button:hover {
+    transform: scale(1.02);
+}
+
+hr {
+    margin: 15px 0;
+    border: none;
+    border-top: 1px solid #000;
+}
+
+.note {
+    border: 1px solid #000;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.note h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.note p {
+    font-size: 0.95rem;
+    line-height: 1.4;
 }
 
 .checkbox {
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox input {
+    width: 16px;
+    height: 16px;
 }
