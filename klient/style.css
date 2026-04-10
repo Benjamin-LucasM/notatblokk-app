@@ -142,6 +142,7 @@ hr {
   padding: 5px;
   border: 1px solid #ccc;
   font-size: 0.95rem;
+  outline: none;
 }
 
 .add-line-btn {

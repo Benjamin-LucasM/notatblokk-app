@@ -95,6 +95,27 @@ app.post("/todos", (req, res) => {
   );
 });
 
+// Oppdaterer en eksisterende todo
+app.put("/todos/:id", (req, res) => {
+  const { title, content } = req.body;
+  const id = req.params.id;
+  console.log(`IP: ${req.ip} - Updated todo ${id}:`, { title, content });
+  db.run(
+    "UPDATE todos SET title = ?, content = ? WHERE id = ?",
+    [title, content, id],
+    function (err) {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      res.json({
+        id,
+        title,
+        content,
+      });
+    },
+  );
+});
+
 const PORT = process.env.PORT || 6767;
 
 // viser hvilken port serveren kjører på
