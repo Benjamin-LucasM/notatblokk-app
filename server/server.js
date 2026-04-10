@@ -46,7 +46,7 @@ app.get("/notes", (req, res) => {
 // Legger til et nytt notat i databasen
 app.post("/notes", (req, res) => {
   const { title, content } = req.body;
-  console.log([title, content]);
+  console.log(`IP: ${req.ip} - Posted:`, { title, content });
   db.run(
     "INSERT INTO notes (title, content) VALUES (?, ?)",
     [title, content],
@@ -77,6 +77,7 @@ app.get("/todos", (req, res) => {
 // Legger til en ny todo i databasen
 app.post("/todos", (req, res) => {
   const { title, content } = req.body;
+  console.log(`IP: ${req.ip} - Posted:`, { title, content });
   db.run(
     "INSERT INTO todos (title, content) VALUES (?, ?)",
     [title, content],

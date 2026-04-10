@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = document.getElementById('title').value;
         const content = document.getElementById('content').value;
 
-        console.log("Sending post");
         fetch('http://192.168.20.83:6767/notes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -57,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(res => res.json())
         .then(newNote => {
-            console.log("POST successful")
             addNoteToDOM(newNote);
             form.reset();
         });

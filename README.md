@@ -15,6 +15,5 @@ server available på chrome: 192.168.20.83:6767
 **GitHub Terminal**
 
 1. git add .
-2. git commit -m "comment"
-    ~kanskje "-a"
+2. git commit -a -m "comment"
 3. git push
