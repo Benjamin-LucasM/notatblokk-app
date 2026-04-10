@@ -44,6 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchNotesBtn.addEventListener('click', hentOgVisNotater);
     fetchTodosBtn.addEventListener('click', hentOgVisTodos);
 
+    function getClientIP() {
+    return fetch('https://api.ipify.org?format=json')
+        .then(res => res.json())
+        .then(data => data.ip)
+        .catch(() => 'Ukjent IP');
+}
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const title = document.getElementById('title').value;
