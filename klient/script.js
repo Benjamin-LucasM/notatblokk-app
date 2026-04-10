@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function addTodoToDOM(todo) {
         const div = document.createElement('div');
         div.className = 'note';
-        div.innerHTML = `<h3>${todo.title}</h3><p>${todo.content || ''}</p>`;
+        div.innerHTML = `<h3>${todo.title}</h3> <div class="checkbox"> <input type="checkbox"></input> <p>${todo.content || ''}</p> </div>`;
         todosContainer.appendChild(div);
     }
 });
