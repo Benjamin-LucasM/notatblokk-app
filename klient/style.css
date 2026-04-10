@@ -94,3 +94,13 @@ hr {
     width: 16px;
     height: 16px;
 }
+
+#notesContainer {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#todosContainer {
+    display: flex;
+    flex-direction: column-reverse;
+}
