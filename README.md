@@ -8,7 +8,7 @@ ssh server@192.168.20.83
 4. npm install
 5. npm audit fix
 6. npm rebuild
-7. node server.js
+7. node server.js > log.txt
 
 server available på chrome: 192.168.20.83:6767
 
