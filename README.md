@@ -18,6 +18,9 @@ server available på chrome: 192.168.20.83:6767
 3. disown -h
 4. exit
 
+*slå av nettsiden som er i bakgrunnen*
+1. pkill -f "node server.js"
+
 **------------------------------------------**
 
 **GitHub Terminal**
