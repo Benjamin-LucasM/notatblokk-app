@@ -54,7 +54,6 @@ app.post("/notes", (req, res) => {
       if (err) {
         return res.status(500).json(err);
       }
-      // Returnerer det nye notatet med ID
       res.json({
         id: this.lastID,
         title,

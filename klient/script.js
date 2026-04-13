@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fetchNotesBtn = document.getElementById("fetchNotesBtn");
   const fetchTodosBtn = document.getElementById("fetchTodosBtn");
 
-  function hentOgVisNotater() {
+  function hentOgVisNotater() { //henter notatene og viser sender de til html
     fetch("http://192.168.20.83:6767/notes")
       .then((res) => res.json())
       .then((data) => {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  function hentOgVisTodos() {
+  function hentOgVisTodos() { //henter todos fra databasen og sender til html
     fetch("http://192.168.20.83:6767/todos")
       .then((res) => res.json())
       .then((data) => {
@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
           const div = document.createElement("div");
           div.className = "todo-box";
 
-          // Splitter content på newline for å få alle linjer
           const lines = todo.content
             ? todo.content.split("\n").filter((line) => line.trim())
             : [];
@@ -65,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchNotesBtn.addEventListener("click", hentOgVisNotater);
   fetchTodosBtn.addEventListener("click", hentOgVisTodos);
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", (e) => { //knappen til henting av notater
     e.preventDefault();
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
@@ -82,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 
-  todoForm.addEventListener("submit", (e) => {
+  todoForm.addEventListener("submit", (e) => { //knappen til henting av todos
     e.preventDefault();
     const title = document.getElementById("todoTitle").value;
     const content = document.getElementById("todoContent").value;
@@ -110,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const addLineBtn = container.querySelector(".add-line-btn");
     const todosItemsDiv = container.querySelector(".todo-items");
 
-    // Funksjon for å samle og lagre alle linjer til databasen
     const saveTodoLines = () => {
       const lines = [];
       todosItemsDiv.querySelectorAll(".todo-item").forEach((item) => {
@@ -140,20 +138,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const inputField = newItem.querySelector(".todo-line-input");
 
-      // Focus på input-feltet
       inputField.focus();
 
-      // Funksjon for å lagre når Enter eller blur skjer
       const saveLine = () => {
         const text = inputField.value.trim();
         if (text) {
-          // Erstatt input med p-tag
+          // bytter til <p>
           const p = document.createElement("p");
           p.textContent = text;
           inputField.replaceWith(p);
           saveTodoLines();
         } else {
-          // Hvis tomt, fjern hele item
+          // Hvis tomt fjernes alt
           newItem.remove();
           saveTodoLines();
         }
@@ -167,17 +163,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // Lagre når man klikker bort fra input
+      // Lagre når man klikker bort
       inputField.addEventListener("blur", saveLine);
 
-      // Legg til delete-funksjonalitet
+      // slett
       newItem.querySelector(".delete-item-btn").addEventListener("click", () => {
         newItem.remove();
         saveTodoLines();
       });
     });
 
-    // Legg til delete-funksjonalitet for eksisterende items
+    // slett knapp
     container.querySelectorAll(".delete-item-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.target.closest(".todo-item").remove();
@@ -190,7 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const div = document.createElement("div");
     div.className = "todo-box";
 
-    // Splitter content på newline for å få alle linjer
     const lines = todo.content
       ? todo.content.split("\n").filter((line) => line.trim())
       : [];
