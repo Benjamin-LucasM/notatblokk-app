@@ -12,6 +12,12 @@ ssh server@192.168.20.83
 
 server available på chrome: 192.168.20.83:6767
 
+*Kjøre den i bakgrunn:*
+1. CTRL + Z
+2. bg
+3. disown -h
+4. exit
+
 **------------------------------------------**
 
 **GitHub Terminal**
