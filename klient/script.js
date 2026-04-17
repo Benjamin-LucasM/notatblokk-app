@@ -44,14 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
             .join("");
 
           div.innerHTML = `
-                        <div class="todo-header">
-                            <h3>${todo.title}</h3>
-                        </div>
-                        <div class="todo-items" data-todo-id="${todo.id}">
-                            ${itemsHTML}
-                        </div>
-                        <button class="add-line-btn" data-todo-id="${todo.id}">+ Legg til linje</button>
-                    `;
+            <div class="todo-header">
+              <h3>${todo.title}</h3>
+            </div>
+            <div class="todo-items" data-todo-id="${todo.id}">
+              ${itemsHTML}
+            </div>      
+            <button class="add-line-btn" data-todo-id="${todo.id}">+ Legg til linje</button>
+        `;
           todosContainer.appendChild(div);
           attachTodoEventListeners(div, todo.id);
         });
